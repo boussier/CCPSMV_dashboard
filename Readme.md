@@ -1,4 +1,4 @@
-# PHYA Rest api
+# Django Rest api
 
 ## Getting Started
 
