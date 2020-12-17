@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  db:
+    image: timescale/timescaledb:1.7.4-pg12
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    env_file:
+      - .env
+
+  api:
+    build:
+      context: .
+    depends_on:
+      - db  
+    volumes:
+      - .:/app
+    command: /app/scripts/start_dev_server.sh
+    entrypoint: /app/scripts/entrypoint.sh
+    restart: on-failure
+    ports:
+      - ${DJANGO_PORT:-8000}:8000
+    env_file:
+      - .env
