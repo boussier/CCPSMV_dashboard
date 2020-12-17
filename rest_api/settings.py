@@ -20,10 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-qjf&1dlz_@s+qq29b838)be!6028vp&&q(005d#v%cmi31q9%'
-
+SECRET_KEY = os.getenv("SECRET_KEY",'')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG",True)
 
 ALLOWED_HOSTS = []
 
@@ -98,9 +97,9 @@ WSGI_APPLICATION = 'rest_api.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "phya"),
-        "USER": os.getenv("POSTGRES_USER", "phya"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "phya"),
+        "NAME": os.getenv("POSTGRES_DB", "restapi"),
+        "USER": os.getenv("POSTGRES_USER", "restapi"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "password"),
         "HOST": os.getenv("POSTGRES_HOST", "db"),
         "POST": os.getenv("POSTGRES_PORT", "5432"),
     }
@@ -174,7 +173,6 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -200,8 +198,8 @@ JWT_AUTH = {
 JWT_ALLOW_REFRESH = True
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'PHYA API',
-    'DESCRIPTION': 'PHYA REST API',
+    'TITLE': 'DJANGO REST API',
+    'DESCRIPTION': 'Starter template for a Django Rest API',
     'VERSION': '1.0.0',
     'CONTACT': {'name': 'Sylvain Boussier'},
     'SERVERS': [{'url':'http://localhost:8000'}],

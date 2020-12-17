@@ -18,7 +18,7 @@ class CustomUserChangeForm(UserChangeForm):
         fields = UserChangeForm.Meta.fields
 
 
-class PhyaSignupForm(SignupForm):
+class CustomSignupForm(SignupForm):
 
     # Put in custom signup logic
     def custom_signup(self, request, user):

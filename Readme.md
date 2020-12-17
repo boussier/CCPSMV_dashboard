@@ -9,12 +9,10 @@ git pull origin master
 ```
 ### Create an environnement file ".env" at the root of the project with the following variables setted:
 ```
-POSTGRES_DB=db_name
-POSTGRES_USER=db_user_name
-POSTGRES_PASSWORD=db_password
-POSTGRES_HOST=db
-POSTGRES_PORT=5432
+POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, SECRET_KEY, DEBUG
 ```
+The secret Key must be unique and secret
+DEBUG should be equal to True for developpement purpose and to False in production environement
 ### Build the image
 ```
 docker-compose build
@@ -23,7 +21,7 @@ docker-compose build
 ```
 docker-compose up
 ```
-By default, the folloowing admin user is created:
+By default, the following admin user is created:
 ```
 login: admin@admin.com
 password: admin
