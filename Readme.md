@@ -5,7 +5,7 @@
 ### Clone or pull project
 ```
 git clone projet repository or
-git pull origin master
+git pull origin main
 ```
 ### Environment variables
 The default environment variables file is the .env file located at the project root directory. You can change theses values for database  connection, django secret key and debug mode
