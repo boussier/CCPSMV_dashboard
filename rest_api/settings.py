@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY",'')
+SECRET_KEY = os.getenv("SECRET_KEY",'jkahzjekhkazhejahzekjazhe')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG",True)
 
@@ -40,12 +40,11 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
-    'rest_framework.authtoken',       
+    'rest_framework.authtoken',
     'allauth.account',
     'allauth.socialaccount',
     'rest_auth',
-    'rest_auth.registration',
-    # 'drf_yasg',
+    'rest_registration',
     'corsheaders',
     'drf_spectacular',
 
@@ -97,11 +96,11 @@ WSGI_APPLICATION = 'rest_api.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "restapi"),
-        "USER": os.getenv("POSTGRES_USER", "restapi"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "password"),
-        "HOST": os.getenv("POSTGRES_HOST", "db"),
-        "POST": os.getenv("POSTGRES_PORT", "5432"),
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "POST": os.getenv("POSTGRES_PORT"),
     }
 }
 
@@ -151,13 +150,13 @@ MEDIA_URL = '/media/'
 SIET_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # new
 
-REST_FRAMEWORK = {   
+REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.IsAdminUser'
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [       
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
@@ -168,10 +167,14 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'users.serializers.UserDetailsSerializer'
 }
 
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'users.serializers.RegisterSerializer'
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_URL': 'https://frontend-host/verify-user/',
+    'RESET_PASSWORD_VERIFICATION_URL': 'https://frontend-host/reset-password/',
+    'REGISTER_EMAIL_VERIFICATION_URL': 'https://frontend-host/verify-email/',
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
+    'REGISTER_SERIALIZER_CLASS': 'users.serializers.RegisterSerializer',
+    'USER_HIDDEN_FIELDS': ('username', 'photo', 'last_login', 'is_active', 'is_staff', 'is_superuser', 'user_permissions', 'groups', 'date_joined')
 }
-
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -188,21 +191,41 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
 REST_USE_JWT = True
-JWT_AUTH = {
-    'JWT_AUTH_HEADER_PREFIX' : 'Bearer',
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30), 
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(minutes=60),
-    'JWT_AUTH_COOKIE': 'JWT',
-    'JWT_ALLOW_REFRESH': True
-}
-JWT_ALLOW_REFRESH = True
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+#     'ROTATE_REFRESH_TOKENS': False,
+#     'BLACKLIST_AFTER_ROTATION': True,
+#     'UPDATE_LAST_LOGIN': False,
+
+#     'ALGORITHM': 'HS256',
+#     'SIGNING_KEY': settings.SECRET_KEY,
+#     'VERIFYING_KEY': None,
+#     'AUDIENCE': None,
+#     'ISSUER': None,
+
+#     'AUTH_HEADER_TYPES': ('Bearer',),
+#     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+#     'USER_ID_FIELD': 'id',
+#     'USER_ID_CLAIM': 'user_id',
+
+#     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+#     'TOKEN_TYPE_CLAIM': 'token_type',
+
+#     'JTI_CLAIM': 'jti',
+
+#     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+#     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+#     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+# }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'DJANGO REST API',
-    'DESCRIPTION': 'Starter template for a Django Rest API',
+    'TITLE': 'PHYA API',
+    'DESCRIPTION': 'PHYA REST API',
     'VERSION': '1.0.0',
     'CONTACT': {'name': 'Sylvain Boussier'},
-    'SERVERS': [{'url':'http://localhost:8000'}],
+    'SERVERS': [{'url': os.getenv("LOCAL_SERVER", "http://phya-api.eu-west-3.elasticbeanstalk.com")}],
 }
 
 
@@ -242,8 +265,7 @@ LOGGING = {
             'handlers': ['file_access'],
             'level': 'INFO',
             'propagate': True,
-        }, 
-        
+        },
+
     },
 }
-

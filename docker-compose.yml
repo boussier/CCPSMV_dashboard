@@ -2,7 +2,7 @@ version: "3"
 
 services:
   db:
-    image: timescale/timescaledb:1.7.4-pg12
+    image: postgres:latest
     ports:
       - ${POSTGRES_PORT:-5432}:5432
     env_file:
@@ -19,6 +19,6 @@ services:
     entrypoint: /app/scripts/entrypoint.sh
     restart: on-failure
     ports:
-      - ${DJANGO_PORT:-8000}:8000
+      - ${DJANGO_PORT:-80}:8000
     env_file:
       - .env
