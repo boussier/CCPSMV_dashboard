@@ -24,6 +24,10 @@ By default, the following admin user is created:
 login: admin@admin.com
 password: admin
 ```
+### Access
+```
+The rest api is accessible at the url: /api
+```
 ### Running the tests
 ```
 docker-compose exec api python manage.py test
