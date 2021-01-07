@@ -7,10 +7,8 @@
 git clone projet repository or
 git pull origin master
 ```
-### Create an environnement file ".env" at the root of the project with the following variables setted:
-```
-POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, SECRET_KEY, DEBUG
-```
+### Environment variables
+The default environment variables file is the .env file located at the project root directory. You can change theses values for database  connection, django secret key and debug mode
 The secret Key must be unique and secret
 DEBUG should be equal to True for developpement purpose and to False in production environement
 ### Build the image
