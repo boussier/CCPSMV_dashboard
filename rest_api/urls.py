@@ -8,10 +8,10 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 from django.views.generic import TemplateView
 
 urlpatterns = [    
-    path('api/', TemplateView.as_view(template_name="about.html")),
-    path('api/admin/', admin.site.urls),   
-    path('api/v1/auth/', include('apiauth.urls')),
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path('ddlcapi/', TemplateView.as_view(template_name="about.html")),
+    path('ddlcapi/admin/', admin.site.urls),
+    path('ddlcapi/v1/auth/', include('apiauth.urls')),
+    path('ddlcapi/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('ddlcapi/schema/swagger-ui/',SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('ddlcapi/schema/redoc/',SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ] 
