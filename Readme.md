@@ -10,15 +10,15 @@ git pull origin main
 ### Environment variables
 The following environemnt variables must be setted in a file called .env and palced at the project root directory: 
 ```
-LOAD_INITIAL_DATA=True or Falase
-POSTGRES_DB= databse name
-POSTGRES_USER= database user
-POSTGRES_PASSWORD= database password
-POSTGRES_HOST= (should be setted to db)
-POSTGRES_PORT= (5433)
-API_PORT= api port
-SECRET_KEY= Django secret key (should be unique and secret)
-DEBUG=should be equal to True for developpement purpose and to False in production environement
+LOAD_INITIAL_DATA = True or False
+POSTGRES_DB = Database name
+POSTGRES_USER = Database user
+POSTGRES_PASSWORD = Database password
+POSTGRES_HOST = (should be setted to db)
+POSTGRES_PORT = (5433)
+API_PORT = Api port
+SECRET_KEY = Django secret key (should be unique and secret)
+DEBUG = Should be equal to True for developpement purpose and to False in production environement
 ```
 ### Build the image
 ```
