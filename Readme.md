@@ -8,9 +8,19 @@ git clone projet repository or
 git pull origin main
 ```
 ### Environment variables
-The default environment variables file is the .env file located at the project root directory. You can change theses values for database  connection, django secret key and debug mode
-The secret Key must be unique and secret
-DEBUG should be equal to True for developpement purpose and to False in production environement
+The following environemnt variables must be setted in a file called .env and placed at the project root directory: 
+```
+LOAD_INITIAL_DATA = True or False
+POSTGRES_DB = Database name
+POSTGRES_USER = Database user
+POSTGRES_PASSWORD = Database password
+POSTGRES_HOST = (should be setted to db)
+POSTGRES_PORT = (5433)
+API_PORT = Api port
+SECRET_KEY = Django secret key (string that should be unique and secret)
+API_BASE_URL = base url for accessing to the api (default is 'api')
+DEBUG = Should be equal to True for developpement purpose and to False in production environement
+```
 ### Build the image
 ```
 docker-compose build

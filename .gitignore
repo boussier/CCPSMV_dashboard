@@ -62,3 +62,6 @@ target/
 *.pot
 *.pyc
 __pycache__/
+
+## Environment ##
+*.env

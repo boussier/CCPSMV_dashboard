@@ -3,8 +3,8 @@ version: "3"
 services:
   db:
     image: postgres:latest
-    ports:
-      - ${POSTGRES_PORT:-5432}:5432
+    expose:
+      - ${POSTGRES_PORT:-5432}
     env_file:
       - .env
 

@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/app/static/
+      - media_volume:/app/media/
+    ports:
+      - 80:80
+    depends_on:
+      - api
+    env_file:
+      - .env
+
+  api:
+    volumes:
+      - .:/app
+      - static_volume:/app/static/
+      - media_volume:/app/media/
+    command: /app/scripts/start_prod_server.sh
+    expose:
+    - 8000
+
+volumes:   
+  static_volume:
+  media_volume:
