@@ -8,7 +8,7 @@ git clone projet repository or
 git pull origin main
 ```
 ### Environment variables
-The following environemnt variables must be setted in a file called .env and palced at the project root directory: 
+The following environemnt variables must be setted in a file called .env and placed at the project root directory: 
 ```
 LOAD_INITIAL_DATA = True or False
 POSTGRES_DB = Database name
