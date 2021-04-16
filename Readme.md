@@ -17,7 +17,8 @@ POSTGRES_PASSWORD = Database password
 POSTGRES_HOST = (should be setted to db)
 POSTGRES_PORT = (5433)
 API_PORT = Api port
-SECRET_KEY = Django secret key (should be unique and secret)
+SECRET_KEY = Django secret key (string that should be unique and secret)
+API_BASE_URL = base url for accessing to the api (default is 'api')
 DEBUG = Should be equal to True for developpement purpose and to False in production environement
 ```
 ### Build the image
