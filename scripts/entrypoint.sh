@@ -13,7 +13,7 @@ try:
     dbname = os.getenv('POSTGRES_DB')
     user = os.getenv('POSTGRES_USER')
     password = os.getenv('POSTGRES_PASSWORD')
-    conn = psycopg2.connect(dbname=dbname, user=user, password=password, host='db', port=5432)
+    conn = psycopg2.connect(dbname=dbname, user=user, password=password, host='agroofdb', port=5432)
 except psycopg2.OperationalError:
     sys.exit(-1)
 sys.exit(0)
