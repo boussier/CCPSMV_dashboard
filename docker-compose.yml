@@ -12,7 +12,7 @@ services:
     build:
       context: .
     depends_on:
-      - db  
+      - agroofdb  
     volumes:
       - .:/app
     command: /app/scripts/start_dev_server.sh
