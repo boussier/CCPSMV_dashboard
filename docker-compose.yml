@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-  agroofdb:
+  ccpsmvdb:
     image: postgres:latest
     expose:
       - ${POSTGRES_PORT:-5432}
     env_file:
       - .env
 
-  agroofapi:
+  ccpsmvapi:
     build:
       context: .
     depends_on:
-      - agroofdb  
+      - ccpsmvdb  
     volumes:
       - .:/app
     command: /app/scripts/start_dev_server.sh

@@ -221,11 +221,11 @@ REST_USE_JWT = True
 # }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'AGROOF API',
-    'DESCRIPTION': 'AGROOF REST API',
+    'TITLE': 'CCPSMV API',
+    'DESCRIPTION': 'CCPSMV REST API',
     'VERSION': '1.0.0',
     'CONTACT': {'name': 'Sylvain Boussier'},
-    'SERVERS': [{'url': os.getenv("LOCAL_SERVER", "http://agroof-api.com")}],
+    'SERVERS': [{'url': os.getenv("LOCAL_SERVER", "http://ccpsmv-api.com")}],
 }
 
 
