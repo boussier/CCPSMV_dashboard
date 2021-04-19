@@ -221,11 +221,11 @@ REST_USE_JWT = True
 # }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'PHYA API',
-    'DESCRIPTION': 'PHYA REST API',
+    'TITLE': 'AGROOF API',
+    'DESCRIPTION': 'AGROOF REST API',
     'VERSION': '1.0.0',
     'CONTACT': {'name': 'Sylvain Boussier'},
-    'SERVERS': [{'url': os.getenv("LOCAL_SERVER", "http://phya-api.eu-west-3.elasticbeanstalk.com")}],
+    'SERVERS': [{'url': os.getenv("LOCAL_SERVER", "http://agroof-api.com")}],
 }
 
 
