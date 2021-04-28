@@ -7,6 +7,7 @@ from django.conf.urls import  url
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from django.views.generic import TemplateView
 from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [    
     path('ccpsmvapi/', TemplateView.as_view(template_name="about.html")),
@@ -15,4 +16,4 @@ urlpatterns = [
     path('ccpsmvapi/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('ccpsmvapi/schema/swagger-ui/',SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('ccpsmvapi/schema/redoc/',SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-] 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
