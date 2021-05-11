@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 import datetime
+from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -127,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'UTC'
 
@@ -192,39 +194,40 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 REST_USE_JWT = True
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-#     'ROTATE_REFRESH_TOKENS': False,
-#     'BLACKLIST_AFTER_ROTATION': True,
-#     'UPDATE_LAST_LOGIN': False,
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+    # 'ROTATE_REFRESH_TOKENS': False,
+    # 'BLACKLIST_AFTER_ROTATION': True,
+    # 'UPDATE_LAST_LOGIN': False,
 
-#     'ALGORITHM': 'HS256',
-#     'SIGNING_KEY': settings.SECRET_KEY,
-#     'VERIFYING_KEY': None,
-#     'AUDIENCE': None,
-#     'ISSUER': None,
+    # 'ALGORITHM': 'HS256',
+    # 'SIGNING_KEY': settings.SECRET_KEY,
+    # 'VERIFYING_KEY': None,
+    # 'AUDIENCE': None,
+    # 'ISSUER': None,
 
-#     'AUTH_HEADER_TYPES': ('Bearer',),
-#     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-#     'USER_ID_FIELD': 'id',
-#     'USER_ID_CLAIM': 'user_id',
+    # 'AUTH_HEADER_TYPES': ('Bearer',),
+    # 'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    # 'USER_ID_FIELD': 'id',
+    # 'USER_ID_CLAIM': 'user_id',
 
-#     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-#     'TOKEN_TYPE_CLAIM': 'token_type',
+    # 'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    # 'TOKEN_TYPE_CLAIM': 'token_type',
 
-#     'JTI_CLAIM': 'jti',
+    # 'JTI_CLAIM': 'jti',
 
-#     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-#     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-#     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-# }
+    # 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    # 'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'CCPSMV API',
     'DESCRIPTION': 'CCPSMV REST API',
     'VERSION': '1.0.0',
     'CONTACT': {'name': 'Sylvain Boussier'},
+    'SCHEMA_PATH_PREFIX': r'/ccpsmvapi/v1/',
     'SERVERS': [{'url': os.getenv("LOCAL_SERVER", "http://ccpsmv-api.com")}],
 }
 

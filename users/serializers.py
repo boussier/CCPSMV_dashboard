@@ -7,13 +7,12 @@ from allauth.account import app_settings as allauth_settings
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser   
-        fields = '__all__'    
-        fields = ('first_name', 'last_name', 'email')
+        fields = '__all__'           
 
 class UserDetailsSerializer(RestAuthUserDetailsSerializer):    
     class Meta:
         model = CustomUser
-        fields = ('pk', 'email', 'first_name', 'last_name', 'weight', 'age', 'height', 'photo')
+        fields = '__all__'
         read_only_fields = ('email', )
 
 class LoginSerializer(RestAuthLoginSerializer):   
