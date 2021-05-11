@@ -8,6 +8,8 @@ services:
     env_file:
       - .env
     command: -p ${POSTGRES_PORT}
+    volumes:
+      - database-data:/var/lib/postgresql/data/
 
   ccpsmvapi:
     build:
@@ -23,3 +25,5 @@ services:
       - ${API_PORT}:7072
     env_file:
       - .env
+volumes:
+  database-data:
