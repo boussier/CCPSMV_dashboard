@@ -38,7 +38,7 @@ class CustomUser(AbstractUser):
     height = models.PositiveIntegerField(default=0, blank=True)
     distanceToWork = models.IntegerField('Distance travail domicile (km)', null=True, blank=True)
     travelDuration = models.IntegerField('Durée du trajet (en mn)', null=True, blank=True)
-    averageCosumption = models.IntegerField('Consommation moyenne (l/100km)', null=True, blank=True)
+    averageCosumption = models.FloatField('Consommation moyenne (l/100km)', null=True, blank=True)
     vehicleType = models.ForeignKey(VehicleType, on_delete=models.CASCADE, verbose_name="Type de véhicule", null=True, blank=True)
     agendaRemoteWorking = models.ManyToManyField(TimeWindow,  verbose_name="Agenda télétravail")
     notation = models.IntegerField(
