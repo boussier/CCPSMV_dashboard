@@ -1,10 +1,13 @@
 from django.db import models
 from django.utils import timezone
-
+from users.models import CustomUser
 
 class RemoteworkEval(models.Model):
     class Meta:
-        verbose_name = "Evaluation période de télétravail"
+        verbose_name = "Evaluation période de télétravail"   
+        verbose_name_plural = "Evaluations période de télétravail"
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True, verbose_name="utilisateur")
     date = models.DateField(default=timezone.now())
     mail = models.IntegerField('Courrier', null=True, blank=True)
     archiving = models.IntegerField('Archivage', null=True, blank=True)
