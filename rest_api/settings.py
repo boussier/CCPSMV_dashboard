@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # local
     'apiauth.apps.ApiauthConfig',
     'users.apps.UsersConfig',
+    'remoteworkEval.apps.RemoteworkevalConfig'
 
 ]
 
