@@ -9,6 +9,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class TimeWindow(models.Model):
     class Meta:
         verbose_name = "Fenêtre de temps"
+        verbose_name_plural = "Fenêtres de temps"
         
     name = models.CharField('Nom', max_length=250, default='', null=True, blank=True)
 
@@ -19,6 +20,7 @@ class TimeWindow(models.Model):
 class VehicleType(models.Model):
     class Meta:
         verbose_name = "Type de véhicule"
+        verbose_name_plural = "Types de véhicule"
 
     name = models.CharField('Nom', max_length=250,default='', null=True, blank=True)
 
@@ -33,6 +35,8 @@ def get_photo_upload_path(instance, filename):
 class CustomUser(AbstractUser):
     class Meta:
         verbose_name = "Utilisateur"
+        verbose_name_plural = "Utilisateurs"
+
     age = models.PositiveIntegerField(default=0, blank=True)
     weight = models.PositiveIntegerField(default=0, blank=True)
     height = models.PositiveIntegerField(default=0, blank=True)
